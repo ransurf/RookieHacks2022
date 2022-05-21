@@ -4,6 +4,7 @@
 /node_modules
 /rookie-hacks-2022/node_modules
 
+
 /.pnp
 .pnp.js
 
@@ -34,3 +35,5 @@ yarn-error.log*
 
 # vercel
 .vercel
+package-lock.json
+.env

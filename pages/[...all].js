@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
 const App = dynamic(() => import('../components/AppShell'), {
-  ssr: false,
+  ssr: true,
 });
 
 export default function Index() {
