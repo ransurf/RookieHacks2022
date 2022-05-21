@@ -1,4 +1,4 @@
-export const PatientSignUpSchema = [
+export const PharmacistSignUpSchema = [
     {
       label: "Title",
       required: true,

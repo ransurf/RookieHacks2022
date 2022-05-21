@@ -17,9 +17,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
-    "noImplicitReturns": false /* Report error when not all code paths in function return a value. - SET TO TRUE WITH STRICT AFTER CONVERSION */,
-
+    "jsx": "preserve",
+    "noImplicitReturns": false /* Report error when not all code paths in function return a value. - SET TO TRUE WITH STRICT AFTER CONVERSION */
   },
   "include": [
     "next-env.d.ts",

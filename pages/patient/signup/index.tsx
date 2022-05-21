@@ -3,9 +3,10 @@ import { collection, addDoc } from 'firebase/firestore';
 import React, {useEffect} from 'react';
 import Router from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { PatientSignUpSchema } from '../../formSchemas/PatientSignUpSchema';
-import { db, auth } from '../../firebase-config';
-import Form from '../../components/Form';
+import { PatientSignUpSchema } from '../../../formSchemas/PatientSignUpSchema';
+import { db, auth } from '../../../firebase-config';
+import Form from '../../../components/Form';
+import { Header } from '../../../components/Header';
 const SignUp = () => {
   
   const [user, loading, error] = useAuthState(auth);
@@ -16,18 +17,13 @@ const SignUp = () => {
     Router.push('/home');
   };
 
+  // ?
   useEffect(() => {
   }, [user]);
 
   return (
     <IonPage>
-
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Sign Up</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-
+      <Header text="User Sign Up"/>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>

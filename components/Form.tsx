@@ -21,7 +21,7 @@ const Form = ({ fields, onSubmit }) => {
         return (
           <IonItem key={`form_field_${index}`} lines="full">
             <>
-              <IonLabel position="fixed">{label}</IonLabel>
+              <IonLabel position="stacked">{label}</IonLabel>
               <IonInput
                 {...props}
                 {...register(props.name, { required, ...requiredOptions })}

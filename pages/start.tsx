@@ -16,14 +16,14 @@ const Start = () => {
             <h2>I am a</h2>
             <IonButton>
               <Link
-                href="/signup/patient"
+                href="/patient/signup"
               >
                 <a>Patient</a>
               </Link>
             </IonButton>
             <IonButton>
               <Link
-                href="/signup/pharmacist"
+                href="/pharmacist/signup"
               >
                 <a>Pharmacist</a>
               </Link>
