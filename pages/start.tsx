@@ -22,14 +22,14 @@ const Start = () => {
             <h2>I am a</h2>
             <IonButton>
               <Link
-                href="/signup"
+                href="/signup/patient"
               >
                 <a>Patient</a>
               </Link>
             </IonButton>
             <IonButton>
               <Link
-                href="/signup-pharmacy"
+                href="/signup/pharmacist"
               >
                 <a>Pharmacist</a>
               </Link>
