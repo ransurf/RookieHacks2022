@@ -1,16 +1,16 @@
 import { IonApp, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, Button } from '@ionic/react';
-import Router from 'next/router';
+
 
 import { auth } from '../firebase-config';
 import { useAuthState } from "react-firebase-hooks/auth";
 
-
+import Router from 'next/router';
 
 const Home = () => {
     const [user, loading, error] = useAuthState(auth);
     const logout = () => {
         auth.signOut();
-        Router.push('/start');
+        Router.push('/');
     }
   return (
     <IonApp>

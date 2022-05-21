@@ -2,10 +2,14 @@ module.exports = {
   purge: [],
   darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'BrushScriptMT': ['Brush Script MT'],
+      },
+    },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-};
+}

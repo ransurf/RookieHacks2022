@@ -1,16 +1,16 @@
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
-import { StatusBar, Style } from '@capacitor/status-bar';
+import { IonApp, 
+  IonRouterOutlet, 
+  IonSplitPane, 
+  IonButton, 
+  IonIcon,
+  IonContent, } from '@ionic/react';
+
 import Link from 'next/link';
 import Router from 'next/router';
-import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
-import Menu from './Menu';
 
-import { auth } from '../firebase-config';
+import { auth, signUpWithGoogle, signInWithGoogle, db } from '../firebase-config';
 import { useAuthState } from "react-firebase-hooks/auth";
 
-
-import Tabs from './examplePages/Tabs';
 import {useEffect} from 'react';
 
 window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => {
@@ -24,13 +24,13 @@ window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => 
 
 
 const AppShell = () => {
-
   const [user, loading, error] = useAuthState(auth);
+
   // idk wtf pathname is supposed to be
   useEffect(() => {
     const {pathname} = Router
     if(pathname == '/' ){
-        user? Router.push('/home') : Router.push('/start');
+        Router.push('/start');
     }
   });
 
@@ -38,9 +38,17 @@ const AppShell = () => {
     <IonApp>
       <IonSplitPane contentId="main">
         <IonRouterOutlet id="main">
-          <Link href="/start">
-            <a>Start</a>
-          </Link>
+          <IonContent>
+            <h1 class="text-5xl font-BrushScriptMT">PharmaConnect</h1>
+            <IonButton expand="block" size='large' onClick={signUpWithGoogle}>
+              <IonIcon slot="start" name="logo-google" />
+              Sign Up with Google
+            </IonButton>
+            <IonButton expand="block" size='large' onClick={signInWithGoogle}>
+              <IonIcon slot="start" name="logo-google" />
+              Login with Google
+            </IonButton>
+          </IonContent>
         </IonRouterOutlet>
       </IonSplitPane>
     </IonApp>
