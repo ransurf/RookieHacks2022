@@ -19,7 +19,7 @@ const Start = () => {
             </Link>
           </IonButton>
           <IonButton>
-            <Link href="/signup">
+            <Link href="/pharmacies">
                 <a>Pharmacist</a>
             </Link>
           </IonButton>
