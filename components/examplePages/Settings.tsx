@@ -7,16 +7,13 @@ import {
   IonContent,
   IonList,
   IonToggle,
-  IonLabel,
-} from '@ionic/react';
-
-import Store from '../../store';
-import * as selectors from '../../store/selectors';
-import { setSettings } from '../../store/actions';
-
+  IonLabel
+} from "@ionic/react";
+import Store from "../../store";
+import * as selectors from "../../store/selectors";
+import { setSettings } from "../../store/actions";
 const Settings = () => {
   const settings = Store.useState(selectors.getSettings);
-
   return (
     <IonPage>
       <IonHeader>
@@ -33,7 +30,7 @@ const Settings = () => {
               onIonChange={e => {
                 setSettings({
                   ...settings,
-                  enableNotifications: e.target.checked,
+                  enableNotifications: e.target.checked
                 });
               }}
             />
@@ -43,5 +40,4 @@ const Settings = () => {
     </IonPage>
   );
 };
-
 export default Settings;

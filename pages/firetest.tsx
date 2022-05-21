@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { db } from "../firebase-config";
 import {
@@ -7,60 +6,52 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
-  doc,
+  doc
 } from "firebase/firestore";
-
 function Firetest() {
   const [newName, setNewName] = useState("");
   const [newAge, setNewAge] = useState(0);
-
   const [users, setUsers] = useState([]);
   //pulls all information from collection
   const usersCollectionRef = collection(db, "test");
-
   const createUser = async () => {
     await addDoc(usersCollectionRef, { name: newName, age: Number(newAge) });
   };
-
   const updateUser = async (id, age) => {
     const userDoc = doc(db, "test", id);
     const newFields = { age: age + 1 };
     await updateDoc(userDoc, newFields);
   };
-
-  const deleteUser = async (id) => {
+  const deleteUser = async id => {
     const userDoc = doc(db, "test", id);
     await deleteDoc(userDoc);
   };
-
   useEffect(() => {
     const getUsers = async () => {
       const data = await getDocs(usersCollectionRef);
-      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setUsers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     };
-
     getUsers();
   }, []);
-
   return (
     <div>
       <input
         placeholder="Name..."
-        onChange={(event) => {
+        onChange={event => {
           setNewName(event.target.value);
         }}
       />
       <input
         type="number"
         placeholder="Age..."
-        onChange={(event) => {
+        onChange={event => {
           setNewAge(event.target.value);
         }}
       />
 
       <button onClick={createUser}> Create User</button>
 
-      {users.map((user) => {
+      {users.map(user => {
         return (
           <div key="">
             {" "}
@@ -88,5 +79,4 @@ function Firetest() {
     </div>
   );
 }
-
 export default Firetest;
