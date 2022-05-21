@@ -1,15 +1,18 @@
 import React from 'react'
 import Link from 'next/link'
 
-type Props = {}
+interface Props {
+  view?: string;
+}
 
 const TabSwitcher = (props: Props) => {
+  const { view } = props;
   return (
     <div className="text-white flex gap-8 justify-center mb-4">
-        <Link href="/requests/patient">
+        <Link href={`/${view}/requests`}>
             <a>Requests</a>
         </Link>
-        <Link href="/profile">
+        <Link href={`/${view}/profile`}>
             <a>Profile</a>
         </Link>
     </div>

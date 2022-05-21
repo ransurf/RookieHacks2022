@@ -31,12 +31,11 @@ const PharmaciesList = () => {
     console.log(pharmacyId);
     console.log(user.uid);
     //set  new pharmacist in collection with id as user.id
-    const pharmacistsCollectionRef = collection(db, 'pharmacists');
+    const pharmacistsCollectionRef: any = collection(db, 'pharmacists');
     setDoc(pharmacistsCollectionRef, user.uid, {
       id: user.uid,
       pharmacyId: pharmacyId,
     });
-    console.log('Document written with ID: ', docRef.id);
   };
   React.useEffect(() => {
     getPharmacies();

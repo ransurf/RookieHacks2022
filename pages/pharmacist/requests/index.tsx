@@ -5,8 +5,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { db, auth } from '../../../firebase-config';
 import RequestList from '../../../components/RequestList';
 import {Header} from '../../../components/Header';
+import TabSwitcher from '../../../components/TabSwitcher';
 
-const SignUp = () => {
+const Requests = () => {
   const [user, loading, error] = useAuthState(auth);
   const requestsRef = collection(db, 'requests');
   const pharmacistsRef = collection(db, 'pharmacists');
@@ -62,7 +63,8 @@ const SignUp = () => {
             <RequestList requests={requests ? requests : []} onSubmit={() => {}} />
           }
       </IonContent>
+      <TabSwitcher view="patient" />
     </IonPage>
   );
 };
-export default SignUp;
+export default Requests;
