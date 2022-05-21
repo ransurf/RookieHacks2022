@@ -66,7 +66,7 @@ export const PharmacistSignUpSchema = [
         label: "Email",
         required: false,
         props: {
-          name: "email",
+          name: "contact_email",
           type: "text",
           placeholder: "Enter your email"
         }
