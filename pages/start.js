@@ -14,12 +14,12 @@ const Start = () => {
         <div className="flex flex-col justify-center items-center">
           <h2>I am a</h2>
           <IonButton>
-            <Link href="/signup">
+            <Link href={{pathname: "/signin", query: { patientIsPharmacy: false }}}>
                 <a>Patient</a>
             </Link>
           </IonButton>
           <IonButton>
-            <Link href="/pharmacies">
+            <Link href={{pathname: "/signin", query: { patientIsPharmacy: true }}}>
                 <a>Pharmacist</a>
             </Link>
           </IonButton>
