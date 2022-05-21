@@ -17,6 +17,7 @@ export const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
+// for testing ========================================================
 export const signUpWithGoogle = () => {
   signInWithPopup(auth, provider).then((result) => {
     console.log("login successfull");
@@ -38,6 +39,7 @@ export const signUpWithGoogle = () => {
   });
 };
 
+
 export const signInWithGoogle = () => {
   signInWithPopup(auth, provider).then((result) => {
     console.log("login successfull");
@@ -50,6 +52,7 @@ export const signInWithGoogle = () => {
       console.log(docs);
       if (docs.empty === true) {
         alert("You are not registered yet. Please sign up.");
+        auth.signOut();
       }
     }).catch((err) => {
       console.log(err);

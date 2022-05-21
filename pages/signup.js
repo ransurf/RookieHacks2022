@@ -5,24 +5,26 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-
-import React from 'react'
-import { PatientSignUpSchema } from '../formSchemas/PatientSignUpSchema';
-
-import { db } from "../firebase-config";
 import {
   collection,
   addDoc,
 } from "firebase/firestore";
+import React from 'react'
+import Router from 'next/router';
+import { useAuthState } from "react-firebase-hooks/auth";
 
+import { PatientSignUpSchema } from '../formSchemas/PatientSignUpSchema';
+import { db, auth } from "../firebase-config";
 import Form from '../components/Form';
 
 const SignUp = () => {
+  const [user, loading, error] = useAuthState(auth);
 
-  const usersCollectionRef = collection(db, "test");
+  const usersRef = collection(db, "users");
 
   const onSubmit = async (data) => {
-    await addDoc(usersCollectionRef, data);
+    await addDoc(usersRef, {...data, UID: user.uid, email: user.email});
+    Router.push("/home");
   };
 
   return (

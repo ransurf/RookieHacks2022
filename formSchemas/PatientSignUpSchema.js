@@ -21,7 +21,7 @@ export const PatientSignUpSchema = [
       props: {
         name: 'lastName',
         type: 'text',
-        placeholder: 'Enter a username',
+        placeholder: 'Enter a last name',
       },
     },
 
