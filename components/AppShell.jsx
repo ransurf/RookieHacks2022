@@ -6,7 +6,9 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './Menu';
 
-import {useAuthState} from 'react-firebase-hooks/auth';
+import { auth } from '../firebase-config';
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 import Tabs from './examplePages/Tabs';
 import {useEffect} from 'react';
@@ -23,11 +25,12 @@ window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => 
 
 const AppShell = () => {
 
+  const [user, loading, error] = useAuthState(auth);
   // idk wtf pathname is supposed to be
   useEffect(() => {
     const {pathname} = Router
     if(pathname == '/' ){
-        Router.push('/start')
+        user? Router.push('/home') : Router.push('/start');
     }
   });
 

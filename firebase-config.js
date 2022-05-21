@@ -20,9 +20,6 @@ export const signInWithGoogle = () => {
   signInWithPopup(auth, provider);
 };
 
-export const logout = () => {
-  auth.signOut();
-}
 
 
   

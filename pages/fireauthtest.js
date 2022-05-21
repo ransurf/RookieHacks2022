@@ -1,11 +1,14 @@
 import React from 'react';
-import { signInWithGoogle, logout, auth, userData } from '../firebase-config';
+import { signInWithGoogle, auth, userData } from '../firebase-config';
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Fireauthtest = () => {
     const [user, loading, error] = useAuthState(auth);
 
+    const logout = () => {
+        auth.signOut();
+    }
 
     return (
         <div styles={"text-align: center"}>
