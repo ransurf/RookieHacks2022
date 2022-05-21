@@ -10,7 +10,7 @@ import {
   doc,
 } from "firebase/firestore";
 
-function firetest() {
+function Firetest() {
   const [newName, setNewName] = useState("");
   const [newAge, setNewAge] = useState(0);
 
@@ -62,7 +62,7 @@ function firetest() {
 
       {users.map((user) => {
         return (
-          <div>
+          <div key="">
             {" "}
             <h1>Name: {user.name}</h1>
             <h1>Age: {user.age}</h1>
@@ -89,4 +89,4 @@ function firetest() {
   );
 }
 
-export default firetest;
+export default Firetest;

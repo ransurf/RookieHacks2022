@@ -3,7 +3,7 @@ import { signInWithGoogle, logout, auth, userData } from '../firebase-config';
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const fireauthtest = () => {
+const Fireauthtest = () => {
     const [user, loading, error] = useAuthState(auth);
 
 
@@ -26,4 +26,4 @@ const fireauthtest = () => {
     );
 }
 
-export default fireauthtest;
+export default Fireauthtest;
