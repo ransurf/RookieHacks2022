@@ -3,7 +3,6 @@ import {
     GoogleMap,
     useLoadScript,
     Marker,
-    InfoWindow,
 } from '@react-google-maps/api';
 
 import usePlacesAutocomplete, {
@@ -40,7 +39,7 @@ var center = {
 };
 
 const Maptest = () => {
-
+    const [marker, setMarker] = React.useState({lat: null, lng: null});
     // initialize the map from the google maps api
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -53,10 +52,10 @@ const Maptest = () => {
         mapRef.current = map;
     }, []);
 
-    // panning based on search
+    // panning coordinate input
     const panTo = React.useCallback(({ lat, lng }) => {
         mapRef.current.panTo({ lat, lng });
-        mapRef.current.setZoom(10);
+        mapRef.current.setZoom(13);
 
     }, []);
 
@@ -68,14 +67,17 @@ const Maptest = () => {
     return (
         <div>
             <LocateBtn panTo={panTo}/>
+            
             <GoogleMap 
                 mapContainerStyle={mapContainerStyle} 
                 zoom={3}
                 center={center}
                 options={options}
                 onLoad={onMapLoad}
-            ></GoogleMap>
-            <Search panTo={panTo}/>
+            >
+                <Marker position={{lat: marker.lat, lng: marker.lng}}/>
+            </GoogleMap>
+            <Search panTo={panTo} setMarker={setMarker}/>
         </div>
     )
 }
@@ -94,12 +96,15 @@ function LocateBtn ({panTo}) {
                 lng: position.coords.longitude,
             };
             console.log(center);
+            //place down a marker at the position
+            
+
         }, () => null);
     }}>Center</button>
 }
 
 
-function Search({ panTo }) {
+function Search({ panTo, setMarker }) {
     //returns variables in an object
     //value is the value of the input
     navigator.geolocation.getCurrentPosition((position) => {
@@ -111,7 +116,7 @@ function Search({ panTo }) {
         setValue, 
         clearSuggestions } = usePlacesAutocomplete({
         requestOptions: {
-            location: center,
+            location: {lat: () => center.lat, lng: () => center.lng},
             radius: 100 * 1000,
             types: ["pharmacy"],
         },
@@ -126,9 +131,11 @@ function Search({ panTo }) {
         //parse the results and
         try {
             const results = await getGeocode({ address });
-            console.log(results[0].place_id);
+            console.log(results[0]);
             const { lat, lng } = await getLatLng(results[0]);
+            setMarker({lat: lat, lng: lng});
             panTo({ lat, lng });
+            
 
         } catch (error) {
             console.log("Error", error);
