@@ -12,7 +12,7 @@ const SignUp = () => {
   const usersRef = collection(db, 'users');
 
   const onSubmit = async data => {
-    await addDoc(usersRef, { ...data, UID: user.uid, email: user.email });
+    await addDoc(usersRef, { ...data, UID: user.uid, email: user.email, role: ['patient'] });
     Router.push('/home');
   };
 

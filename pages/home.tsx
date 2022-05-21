@@ -1,17 +1,19 @@
 import React from 'react'
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import {Header} from '../components/Header';
-import Tabs from '../components/Tabs';
+import TempTabs from '../components/TempTabs';
+import Link from 'next/link';
 type Props = {}
 
 const Home = (props: Props) => {
 
   return (
     <IonPage>
-        <Header text="Requests"/>
-        <Tabs/>
+        <Link href="/requests/patients">
+            <a>Requests</a>
+        </Link>
+        <TempTabs/>
     </IonPage>
-    
   )
 }
 
