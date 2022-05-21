@@ -30,7 +30,7 @@ const Settings = () => {
               onIonChange={e => {
                 setSettings({
                   ...settings,
-                  enableNotifications: e.target.checked
+                  enableNotifications: (e.target as HTMLIonToggleElement).checked
                 });
               }}
             />

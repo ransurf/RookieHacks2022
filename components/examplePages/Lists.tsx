@@ -32,7 +32,7 @@ const Lists = () => {
             <IonTitle size="large">Lists</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <AllLists />
+        <AllLists onSelect/>
       </IonContent>
     </IonPage>
   );
