@@ -11,6 +11,7 @@ import { auth, db } from '../firebase-config';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { Header } from './Header';
+import Link from 'next/link';
 
 const provider = new GoogleAuthProvider();
 const AppShell = () => {
@@ -55,6 +56,9 @@ const AppShell = () => {
               <IonIcon slot="start" name="logo-google" />
               Sign Into Google
             </IonButton>
+            <Link href="/pharmacist/requests">
+              <a>RequestsTest</a>
+            </Link>
           </IonContent>
         </IonRouterOutlet>
       </IonSplitPane>
