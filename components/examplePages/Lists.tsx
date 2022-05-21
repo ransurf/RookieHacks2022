@@ -1,6 +1,5 @@
-import Store from '../../store';
-import * as selectors from '../../store/selectors';
-
+import Store from "../../store";
+import * as selectors from "../../store/selectors";
 import {
   IonPage,
   IonHeader,
@@ -8,27 +7,17 @@ import {
   IonTitle,
   IonContent,
   IonItem,
-  IonLabel,
-} from '@ionic/react';
-
+  IonLabel
+} from "@ionic/react";
 const ListEntry = ({ list, ...props }) => (
   <IonItem routerLink={`/tabs/lists/${list.id}`} className="list-entry">
     <IonLabel>{list.name}</IonLabel>
   </IonItem>
 );
-
 const AllLists = ({ onSelect }) => {
   const lists = Store.useState(selectors.getLists);
-
-  return (
-    <>
-      {lists.map((list, i) => (
-        <ListEntry list={list} key={i} />
-      ))}
-    </>
-  );
+  return <>{lists.map((list, i) => <ListEntry list={list} key={i} />)}</>;
 };
-
 const Lists = () => {
   return (
     <IonPage>
@@ -48,5 +37,4 @@ const Lists = () => {
     </IonPage>
   );
 };
-
 export default Lists;
