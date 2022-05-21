@@ -1,13 +1,18 @@
-import { IonApp, 
-  IonRouterOutlet, 
-  IonSplitPane, 
-  IonButton, 
+import {
+  IonApp,
+  IonRouterOutlet,
+  IonSplitPane,
+  IonButton,
   IonIcon,
-  IonContent, } from '@ionic/react';
+  IonContent,
+  IonPage,
+} from '@ionic/react';
 
 import Router from 'next/router';
 
-import { auth, db} from '../firebase-config';
+import { auth, db } from '../firebase-config';
+
+import { Header } from './Header';
 
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, query, where, getDocs, } from 'firebase/firestore';
@@ -17,7 +22,7 @@ window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => 
     await StatusBar.setStyle({
       style: status.matches ? Style.Dark : Style.Light,
     });
-  } catch {}
+  } catch { }
 });
 
 const provider = new GoogleAuthProvider();
@@ -43,7 +48,7 @@ const AppShell = () => {
           alert("You are not registered yet. Please sign up.");
           Router.push('/start');
         }
-        else{
+        else {
           Router.push("/home");
         }
       }).catch((err) => {
@@ -54,20 +59,20 @@ const AppShell = () => {
     });
   }
 
-  return (
-    <IonApp>
-      <IonSplitPane contentId="main">
-        <IonRouterOutlet id="main">
-          <IonContent>
-            <h1 class="text-5xl font-BrushScriptMT">PharmaConnect</h1>
-            <IonButton expand="block" size='large' onClick={handleLogin}>
-              <IonIcon slot="start" name="logo-google" />
-              Hi
-            </IonButton>
-          </IonContent>
-        </IonRouterOutlet>
-      </IonSplitPane>
-    </IonApp>
+  return (<IonApp>
+    <IonSplitPane contentId="main">
+      <IonRouterOutlet id="main">
+        <IonContent>
+          <Header />
+          <h1>Welcome to PharmaConnect</h1>
+          <IonButton expand="block" size='large' onClick={handleLogin}>
+            <IonIcon slot="start" name="logo-google" />
+            Sign in/Sign up to your account with google
+          </IonButton>
+        </IonContent>
+      </IonRouterOutlet>
+    </IonSplitPane>
+  </IonApp>
   );
 };
 

@@ -24,8 +24,6 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Component {...pageProps} />
       <Script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></Script>
-      <Script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></Script>
-      <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
     </>
   );
 }
