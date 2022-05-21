@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import { db } from "../firebase-config";
 import {
   collection,
@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 function Firetest() {
   const [newName, setNewName] = useState("");
-  const [newAge, setNewAge] = useState(0);
+  const [newAge, setNewAge] = useState<Number>(0);
   const [users, setUsers] = useState([]);
   //pulls all information from collection
   const usersCollectionRef = collection(db, "test");
@@ -45,7 +45,7 @@ function Firetest() {
         type="number"
         placeholder="Age..."
         onChange={event => {
-          setNewAge(event.target.value);
+          setNewAge((Number(event.target.value)));
         }}
       />
 

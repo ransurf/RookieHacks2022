@@ -21,7 +21,7 @@ import {
 
 import mapStyles from "./maptest/mapStyles"
 
-const libraries = ["places"];
+const libraries: any = ["places"];
 const mapContainerStyle = {
     width: '100vw',
     height: '50vh',

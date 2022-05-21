@@ -2,8 +2,7 @@ import React from "react";
 import {
   signUpWithGoogle,
   signInWithGoogle,
-  auth,
-  userData
+  auth
 } from "../firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
 const Fireauthtest = () => {
@@ -12,7 +11,7 @@ const Fireauthtest = () => {
     auth.signOut();
   };
   return (
-    <div styles={"text-align: center"}>
+    <div>
       <h1>fireauthtest</h1>
       <p>==================</p>
       <button onClick={signUpWithGoogle}>Sign Up</button>
