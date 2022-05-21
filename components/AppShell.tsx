@@ -33,7 +33,7 @@ const AppShell = () => {
               alert('You are not registered yet. Please sign up.');
               Router.push('/start');
             } else {
-              Router.push('/home');
+              Router.push('/patient/requests');
             }
           })
           .catch(err => {

@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 type Props = {}
 
-const TempTabs = (props: Props) => {
+const TabSwitcher = (props: Props) => {
   return (
     <div className="text-white flex gap-8 justify-center mb-4">
         <Link href="/requests/patient">
@@ -16,4 +16,4 @@ const TempTabs = (props: Props) => {
   )
 }
 
-export default TempTabs
+export default TabSwitcher

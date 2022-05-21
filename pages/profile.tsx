@@ -12,6 +12,7 @@ import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Router from 'next/router';
 import Menu from '../components/Menu';
+import TabSwitcher from '../components/TabSwitcher';
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
   const logout = () => {
@@ -42,6 +43,7 @@ const Home = () => {
               </p>
             </div>
           )}
+          <TabSwitcher />
         </IonContent>
       {/* </IonSplitPane> */}
     </IonPage>

@@ -25,7 +25,7 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     await addDoc(pharmaciesRef, {...data, UID: pharmacy.uid, email: pharmacy.email});
-    Router.push("/home");
+    Router.push("/pharmacy/requests");
   };
 
   return (
