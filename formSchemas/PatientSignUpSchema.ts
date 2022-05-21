@@ -3,7 +3,7 @@ export const PatientSignUpSchema = [
     label: "First Name",
     required: true,
     requiredOptions: {
-      maxLength: 10
+      maxLength: 20
     },
     props: {
       name: "firstName",
@@ -15,7 +15,7 @@ export const PatientSignUpSchema = [
     label: "Last Name",
     required: true,
     requiredOptions: {
-      maxLength: 10
+      maxLength: 20
     },
     props: {
       name: "lastName",
@@ -28,7 +28,7 @@ export const PatientSignUpSchema = [
     required: true,
     requiredOptions: {
       min: 1,
-      max: 99
+      max: 150
     },
     props: {
       name: "age",
@@ -49,7 +49,6 @@ export const PatientSignUpSchema = [
   {
     label: "Phone Number",
     required: true,
-    requiredOptions: {},
     props: {
       name: "phoneNumber",
       type: "number",

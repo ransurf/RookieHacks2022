@@ -1,22 +1,16 @@
 import {
   IonApp,
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonContent,
   IonButton
 } from "@ionic/react";
 import Link from "next/link";
+import { Header } from "../components/Header";
 const Start = () => {
   return (
     <IonApp>
       <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>PharmaConnect</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <Header />
         <IonContent>
           <div className="flex flex-col justify-center items-center">
             <h2>I am a</h2>
