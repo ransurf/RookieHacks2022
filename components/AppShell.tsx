@@ -10,8 +10,18 @@ import Router from "next/router";
 import { auth, db } from "../firebase-config";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
+<<<<<<< HEAD
 import { Header } from './Header';
 
+=======
+window.matchMedia("(prefers-color-scheme: dark)").addListener(async status => {
+  try {
+    await StatusBar.setStyle({
+      style: status.matches ? Style.Dark : Style.Light
+    });
+  } catch {}
+});
+>>>>>>> 9dd526cbe00f961b3b2564bdb69e20fc0c600b39
 const provider = new GoogleAuthProvider();
 const AppShell = () => {
   //const [user, loading, error] = useAuthState(auth);
@@ -44,6 +54,7 @@ const AppShell = () => {
         console.log(error);
       });
   };
+<<<<<<< HEAD
   return (<IonApp>
     <IonSplitPane contentId="main">
       <IonRouterOutlet id="main">
@@ -58,6 +69,22 @@ const AppShell = () => {
       </IonRouterOutlet>
     </IonSplitPane>
   </IonApp>
+=======
+  return (
+    <IonApp>
+      <IonSplitPane contentId="main">
+        <IonRouterOutlet id="main">
+          <IonContent>
+            <h1 class="text-5xl font-BrushScriptMT">PharmaConnect</h1>
+            <IonButton expand="block" size="large" onClick={handleLogin}>
+              <IonIcon slot="start" name="logo-google" />
+              Hi
+            </IonButton>
+          </IonContent>
+        </IonRouterOutlet>
+      </IonSplitPane>
+    </IonApp>
+>>>>>>> 9dd526cbe00f961b3b2564bdb69e20fc0c600b39
   );
 };
 export default AppShell;
