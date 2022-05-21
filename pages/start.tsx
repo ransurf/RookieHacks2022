@@ -22,20 +22,14 @@ const Start = () => {
             <h2>I am a</h2>
             <IonButton>
               <Link
-                href={{
-                  pathname: "/signin",
-                  query: { patientIsPharmacy: false }
-                }}
+                href="/signup"
               >
                 <a>Patient</a>
               </Link>
             </IonButton>
             <IonButton>
               <Link
-                href={{
-                  pathname: "/signin",
-                  query: { patientIsPharmacy: true }
-                }}
+                href="/signup-pharmacy"
               >
                 <a>Pharmacist</a>
               </Link>
