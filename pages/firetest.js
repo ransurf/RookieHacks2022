@@ -17,19 +17,19 @@ function firetest() {
   const [users, setUsers] = useState([]);
   //pulls all information from collection
   const usersCollectionRef = collection(db, "test");
-  
+
   const createUser = async () => {
     await addDoc(usersCollectionRef, { name: newName, age: Number(newAge) });
   };
 
   const updateUser = async (id, age) => {
-    const userDoc = doc(db, "users", id);
+    const userDoc = doc(db, "test", id);
     const newFields = { age: age + 1 };
     await updateDoc(userDoc, newFields);
   };
 
   const deleteUser = async (id) => {
-    const userDoc = doc(db, "users", id);
+    const userDoc = doc(db, "test", id);
     await deleteDoc(userDoc);
   };
 
