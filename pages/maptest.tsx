@@ -86,10 +86,10 @@ const Maptest = () => {
 
     return (
         <div>
-            <LocateBtn panTo={panTo}/>
+        <LocateBtn panTo={panTo}/>
             
             <GoogleMap 
-                mapContainerStyle={mapContainerStyle} 
+                 mapContainerStyle={mapContainerStyle}
                 zoom={3}
                 center={center}
                 options={options}

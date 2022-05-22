@@ -75,7 +75,7 @@ const SignUp = () => {
             <IonLabel>Pharmacy</IonLabel>
             <IonSelect value={pharmID} placeholder="Choose your Location" okText="Okay" cancelText="Dismiss" onIonChange={e => setPharmID(e.detail.value)}>
               {pharmacies.map(pharm => (
-                <IonSelectOption value={pharm.id}>
+                <IonSelectOption value={pharm.pharmacyID}>
                   {pharm.name + " @ " + pharm.address}
                 </IonSelectOption>
               ))}

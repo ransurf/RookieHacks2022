@@ -1,26 +1,14 @@
 export const PharmacyCreateSchema = [
     {
-        label: "First Name",
+        label: "Pharmacy Name",
         required: true,
         requiredOptions: {
           maxLength: 20
         },
         props: {
-          name: "firstName",
+          name: "name",
           type: "text",
-          placeholder: "Enter a first name"
-        }
-      },
-      {
-        label: "Last Name",
-        required: true,
-        requiredOptions: {
-          maxLength: 20
-        },
-        props: {
-          name: "lastName",
-          type: "text",
-          placeholder: "Enter a last name"
+          placeholder: "Name of your pharmacy"
         }
       },
       {
@@ -29,16 +17,25 @@ export const PharmacyCreateSchema = [
         props: {
           name: "phoneNumber",
           type: "number",
-          placeholder: "Enter a phone number"
+          placeholder: "institution phone number"
         }
       },
       {
-          label: "Email",
-          required: false,
+          label: "email",
+          required: true,
           props: {
             name: "contact_email",
             type: "text",
-            placeholder: "Enter your email"
-          }
-        },
-    ];
+            placeholder: "contact email"
+    }
+    },
+    {
+        label: "description",
+        required: true,
+        props: {
+          name: "description",
+          type: "description",
+          placeholder: "about the pharmacy"
+        }
+  },
+];
