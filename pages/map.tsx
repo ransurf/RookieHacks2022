@@ -43,18 +43,7 @@ var center = {
     lng: -106.3468
 };
 
-const Maptest = () => {
-    
-
-    //Database stuff===========================================================
-    const usersCollectionRef = collection(db, "pharmacies");
-    const addPharm = async () => {
-        console.log(qRes);
-        await addDoc(usersCollectionRef, { 
-            address: qRes.formatted_address, 
-            pharmacyID: qRes.place_id});
-    };
-
+const Map = ({handleSel}) => {
 
     //maps stuff=====================================================
     const [marker, setMarker] = React.useState({lat: null, lng: null});
@@ -86,7 +75,6 @@ const Maptest = () => {
     return (
         <div>
         <LocateBtn panTo={panTo}/>
-            
             <GoogleMap 
                  mapContainerStyle={mapContainerStyle}
                 zoom={3}
@@ -96,14 +84,12 @@ const Maptest = () => {
             >
                 <Marker position={{lat: marker.lat, lng: marker.lng}}/>
             </GoogleMap>
-            <Search panTo={panTo} setMarker={setMarker} setQRes={setQRes}/>
-
-            {qRes?<button onClick={addPharm}>Add Pharmacy</button>:null}
+            <Search panTo={panTo} setMarker={setMarker} setQRes={setQRes} handleSel={handleSel}/>
         </div>
     )
 }
 
-export default Maptest;
+export default Map;
 
 function LocateBtn ({panTo}) {
     return <button onClick={() => {
@@ -125,7 +111,7 @@ function LocateBtn ({panTo}) {
 }
 
 
-function Search({ panTo, setMarker, setQRes }) {
+function Search({ panTo, setMarker, setQRes, handleSel }) {
     //returns variables in an object
     //value is the value of the input
     navigator.geolocation.getCurrentPosition((position) => {
@@ -157,7 +143,7 @@ function Search({ panTo, setMarker, setQRes }) {
             const { lat, lng } = await getLatLng(results[0]);
             setMarker({lat: lat, lng: lng});
             panTo({ lat, lng });
-
+            handleSel(results[0]);
 
         } catch (error) {
             console.log("Error", error);
