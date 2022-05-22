@@ -12,6 +12,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { Header } from './Header';
 import Link from 'next/link';
+import { logoGoogle } from 'ionicons/icons';
 
 const provider = new GoogleAuthProvider();
 const AppShell = () => {
@@ -55,7 +56,7 @@ const AppShell = () => {
             <Header />
             <h1>Welcome to PharmaConnect</h1>
             <IonButton expand="block" size="large" onClick={handleLogin}>
-              <IonIcon slot="start" name="logo-google" />
+              <IonIcon slot="start" icon={logoGoogle}/>
               Sign Into Google
             </IonButton>
             <Link href="/pharmacist/requests">
