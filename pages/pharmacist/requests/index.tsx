@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import { collection, getDoc, getDocs, query, doc, where } from 'firebase/firestore';
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -6,6 +6,7 @@ import { db, auth } from '../../../firebase-config';
 import RequestList from '../../../components/RequestList';
 import {Header} from '../../../components/Header';
 import TabSwitcher from '../../../components/TabSwitcher';
+
 
 const Requests = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -80,8 +81,10 @@ const Requests = () => {
           {requests &&
             <RequestList requests={requests ? requests : []} onSubmit={() => {}} />
           }
+        
+
       </IonContent>
-      <TabSwitcher view="patient" />
+      <TabSwitcher view="pharmacist" />
     </IonPage>
   );
 };

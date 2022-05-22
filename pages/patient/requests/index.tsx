@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useEffect } from 'react';
 import Router from 'next/router';
@@ -38,7 +38,10 @@ const SignUp = () => {
             <RequestList requests={requests} onSubmit={() => {}} />
           }
       </IonContent>
-      <TabSwitcher view="pharmacist"/>
+      <IonButton onClick={() => Router.push('/patient/requests/create')}>
+          Create New Request
+      </IonButton>
+      <TabSwitcher view="patient"/>
     </IonPage>
     
   );
