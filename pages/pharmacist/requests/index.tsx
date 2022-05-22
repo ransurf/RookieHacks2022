@@ -52,7 +52,7 @@ const Requests = () => {
           return <div>No user pharm</div>
         }
     console.log("User Pharmacy:", userPharmacy);
-    const q = query(requestsRef, where('pharmacyID', '==', userPharmacy));
+    const q = query(requestsRef, where('pharmacyID', '==', userPharmacy), where('status', '==', 'pending'));
     getDocs(q).then(docs => {
       console.log("requests of pharmacy: ")
       console.log(docs.docs.map(doc => doc.data()));
