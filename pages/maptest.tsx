@@ -24,9 +24,9 @@ import {
 } from 'firebase/firestore';
 import { db } from "../firebase-config";
 
-import mapStyles from "./maptest/mapStyles"
+import mapStyles from "../public/maptest/mapStyles"
 
-const libraries = ["places"];
+const libraries: any = ["places"];
 const mapContainerStyle = {
     width: '100vw',
     height: '50vh',
@@ -67,7 +67,7 @@ const Maptest = () => {
     });
 
     //save the map instance to a variable
-    const mapRef = React.useRef();
+    const mapRef = React.useRef<any>();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
     }, []);
@@ -132,6 +132,7 @@ function Search({ panTo, setMarker, setQRes }) {
     navigator.geolocation.getCurrentPosition((position) => {
         center.lat= position.coords.latitude,
         center.lng= position.coords.longitude});
+
     const {ready, 
         value, 
         suggestions: {status, data}, 
@@ -171,6 +172,7 @@ function Search({ panTo, setMarker, setQRes }) {
         />
         <ComboboxPopover>
             <ComboboxList>
+                {/* @ts-ignore */}
             {status === "OK" && data.map(({id, description}) => (
                 <ComboboxOption key={id} value={description} />
             ))}

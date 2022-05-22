@@ -16,7 +16,7 @@ import {
 } from '@ionic/react';
 import { db } from '../firebase-config';
 import { auth } from '../firebase-config';
-import { collection, getDocs, doc, updateDoc, addDoc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, addDoc, setDoc, DocumentData, DocumentReference, PartialWithFieldValue, SetOptions } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const PharmaciesList = () => {
@@ -32,10 +32,10 @@ const PharmaciesList = () => {
     console.log(user.uid);
     //set  new pharmacist in collection with id as user.id
     const pharmacistsCollectionRef: any = collection(db, 'pharmacists');
-    setDoc(pharmacistsCollectionRef, user.uid, {
+    setDoc(pharmacistsCollectionRef as unknown as DocumentReference<DocumentData>, user.uid as unknown as PartialWithFieldValue<DocumentData>, {
       id: user.uid,
       pharmacyId: pharmacyId,
-    });
+    } as SetOptions);
   };
   React.useEffect(() => {
     getPharmacies();
