@@ -19,7 +19,7 @@ import {
   getDoc,
   getDocs,
 } from "firebase/firestore";
-import Map from '../../map';
+import Map from '../../../components/map';
 import Form from '../../../components/Form';
 import { PharmacyCreateSchema } from '../../../formSchemas/PharmacyCreateSchema';
 import { Header } from '../../../components/Header';
