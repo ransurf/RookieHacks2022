@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import { collection, getDoc, getDocs, query, doc, where } from 'firebase/firestore';
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -7,25 +7,43 @@ import RequestList from '../../../components/RequestList';
 import {Header} from '../../../components/Header';
 import TabSwitcher from '../../../components/TabSwitcher';
 
+
 const Requests = () => {
   const [user, loading, error] = useAuthState(auth);
   const requestsRef = collection(db, 'requests');
-  const pharmacistsRef = collection(db, 'pharmacists');
+  const usersRef = collection(db, 'users');
   const [requests, setRequests] = React.useState([]);
   const [userPharmacy, setUserPharmacy] = React.useState('');
 
   const verifyUser = async () => {
       //check through pharmacist refs to see if user is a pharmacist
-        const pharmacistRef = doc(pharmacistsRef, user.uid);
 
-        const docSnap = await getDoc(pharmacistRef);
+        // const docSnap = await getDoc(pharmacistRef);
 
-        if (docSnap.exists()) {
-            console.log("Pharmacist User Info:", docSnap.data());
-            setUserPharmacy(docSnap.data().pharmacy);
-        } else {
-        console.log("No such document!");
-        }
+        // if (docSnap.exists()) {
+        //     console.log("Pharmacist User Info:", docSnap.data());
+        //     if (docSnap.data().pharmacyID) {
+        //       setUserPharmacy(docSnap.data().pharmacyID);
+        //     } else {
+        //       console.log("User is not a pharmacist");
+        //     }
+        // } else {
+        // console.log("No such document!");
+        // }
+
+        const q = query(usersRef, where('UID', '==', user.uid));
+        getDocs(q).then(docs => {
+          if (docs.empty !== true) {
+            console.log(docs);
+            if (docs.docs[0].data().pharmacyID) {
+              setUserPharmacy(docs.docs[0].data().pharmacyID);
+            } else {
+              console.log("User is not a pharmacist");
+            }
+          }
+
+          
+        });
     }
 
 
@@ -34,9 +52,10 @@ const Requests = () => {
           return <div>No user pharm</div>
         }
     console.log("User Pharmacy:", userPharmacy);
-    const q = query(requestsRef, where('pharmacy', 'in', [userPharmacy]));
+    const q = query(requestsRef, where('pharmacyID', '==', userPharmacy));
     getDocs(q).then(docs => {
-      console.log("requests of pharmacy", docs);
+      console.log("requests of pharmacy: ")
+      console.log(docs.docs.map(doc => doc.data()));
       setRequests(docs.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     });
     console.log(requests);
@@ -62,6 +81,8 @@ const Requests = () => {
           {requests &&
             <RequestList requests={requests ? requests : []} onSubmit={() => {}} />
           }
+        
+
       </IonContent>
       <TabSwitcher view="pharmacist" />
     </IonPage>
