@@ -30,6 +30,7 @@ const SignUp = () => {
 
   const [pharmacies, setPharmacies] = useState([]);
   const [pharmID, setPharmID] = useState('');
+  const [pharmName, setPharmName] = useState('');
   const [image, setImage] = useState('');
   const onChange = (data: any) => {
     console.log(data);
@@ -56,7 +57,14 @@ const SignUp = () => {
   const onSubmit = async data => {
     console.log(data);
     console.log('Creating new request');
-    addDoc(requestRef, { ...data, pharmacyID: pharmID, image: image, patient: user.uid, status: 'pending' });
+    addDoc(requestRef, { 
+      ...data, 
+      pharmacyID: pharmID, 
+      image: image, 
+      patient: user.uid, 
+      pharmacyName: pharmacies.find(pharm => pharm.place_id === pharmID).name,
+      pharmacyAddress: pharmacies.find(pharm => pharm.place_id === pharmID).address,
+      status: 'pending' });
     Router.push('/patient/requests');
   };
 

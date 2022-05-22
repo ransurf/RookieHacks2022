@@ -31,11 +31,11 @@ const SignUp = () => {
 
   return (
     <IonPage>
-      <Header text="My Requests"/>
+      <Header text="My Requests: Patient"/>
 
       <IonContent>
           {requests &&
-            <RequestList requests={requests} onSubmit={() => {}} />
+            <RequestList requests={requests ? requests : []} onSubmit={() => {}} />
           }
       </IonContent>
       <IonButton onClick={() => Router.push('/patient/requests/create')}>

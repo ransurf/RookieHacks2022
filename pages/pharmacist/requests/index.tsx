@@ -75,7 +75,7 @@ const Requests = () => {
 
   return (
     <IonPage>
-      <Header text="My Requests"/>
+      <Header text="My Requests: Pharmacy"/>
 
       <IonContent>
           {requests &&
