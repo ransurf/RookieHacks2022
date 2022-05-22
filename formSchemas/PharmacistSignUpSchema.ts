@@ -23,18 +23,6 @@ export const PharmacistSignUpSchema = [
         placeholder: "Enter a last name"
       }
     },
-    { 
-      label: "Pharmacy",
-      required: true,
-      requiredOptions: {
-        maxLength: 50
-      },
-      props: {
-        name: "title",
-        type: "text",
-        placeholder: "Select your pharmacy"
-      }
-    },
     {
       label: "Phone Number",
       required: true,
