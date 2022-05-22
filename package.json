@@ -18,7 +18,7 @@
     "@capacitor/ios": "^3.0.1",
     "@capacitor/status-bar": "^1.0.1",
     "@ionic/cli": "^6.19.1",
-    "@ionic/react": "^5.5.2",
+    "@ionic/react": "file:lib/ionic-react-5.4.4.tgz",
     "@ionic/react-router": "^5.5.2",
     "@reach/combobox": "^0.17.0",
     "@react-google-maps/api": "^2.11.4",
