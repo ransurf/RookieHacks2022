@@ -18,6 +18,12 @@ import {
     ComboboxOption,
 } from '@reach/combobox';
 
+import {
+    addDoc,
+    collection,
+} from 'firebase/firestore';
+import { db } from "../firebase-config";
+
 import mapStyles from "./maptest/mapStyles"
 
 const libraries = ["places"];
@@ -39,7 +45,21 @@ var center = {
 };
 
 const Maptest = () => {
+    
+
+    //Database stuff===========================================================
+    const usersCollectionRef = collection(db, "test");
+    const addPharm = async () => {
+        console.log(qRes);
+        await addDoc(usersCollectionRef, { 
+            address: qRes.formatted_address, 
+            id: qRes.place_id});
+    };
+
+
+    //maps stuff=====================================================
     const [marker, setMarker] = React.useState({lat: null, lng: null});
+    const [qRes, setQRes] = React.useState(null);
     // initialize the map from the google maps api
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -77,7 +97,9 @@ const Maptest = () => {
             >
                 <Marker position={{lat: marker.lat, lng: marker.lng}}/>
             </GoogleMap>
-            <Search panTo={panTo} setMarker={setMarker}/>
+            <Search panTo={panTo} setMarker={setMarker} setQRes={setQRes}/>
+
+            {qRes?<button onClick={addPharm}>Add Pharmacy</button>:null}
         </div>
     )
 }
@@ -104,7 +126,7 @@ function LocateBtn ({panTo}) {
 }
 
 
-function Search({ panTo, setMarker }) {
+function Search({ panTo, setMarker, setQRes }) {
     //returns variables in an object
     //value is the value of the input
     navigator.geolocation.getCurrentPosition((position) => {
@@ -131,11 +153,11 @@ function Search({ panTo, setMarker }) {
         //parse the results and
         try {
             const results = await getGeocode({ address });
-            console.log(results[0]);
+            setQRes(results[0]);
             const { lat, lng } = await getLatLng(results[0]);
             setMarker({lat: lat, lng: lng});
             panTo({ lat, lng });
-            
+
 
         } catch (error) {
             console.log("Error", error);

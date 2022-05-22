@@ -1,6 +1,30 @@
 export const PharmacistSignUpSchema = [
     {
-      label: "Title",
+      label: "First Name",
+      required: true,
+      requiredOptions: {
+        maxLength: 20
+      },
+      props: {
+        name: "firstName",
+        type: "text",
+        placeholder: "Enter a first name"
+      }
+    },
+    {
+      label: "Last Name",
+      required: true,
+      requiredOptions: {
+        maxLength: 20
+      },
+      props: {
+        name: "lastName",
+        type: "text",
+        placeholder: "Enter a last name"
+      }
+    },
+    { 
+      label: "Pharmacy",
       required: true,
       requiredOptions: {
         maxLength: 50
@@ -8,51 +32,9 @@ export const PharmacistSignUpSchema = [
       props: {
         name: "title",
         type: "text",
-        placeholder: "Enter the title of your pharmacy"
+        placeholder: "Select your pharmacy"
       }
     },
-    {
-        label: "Description",
-        required: false,
-        equiredOptions: {
-            maxLength: 300
-          },
-        props: {
-          name: "description",
-          type: "text",
-          placeholder: "Enter a short description of your pharmacy"
-        }
-      },
-    {
-      label: "Address",
-      required: true,
-      props: {
-        name: "address",
-        type: "text",
-        placeholder: "Enter your pharmacy's location"
-      }
-    },
-    {
-        label: "ZIP Code",
-        required: true,
-        props: {
-          name: "zipcode",
-          type: "text",
-          placeholder: "Enter your pharmacy's zipcode"
-        }
-      },
-    {
-        label: "Working Hours",
-        required: false,
-        equiredOptions: {
-            maxLength: 100
-          },
-        props: {
-          name: "workingHours",
-          type: "text",
-          placeholder: "Describe your working hours"
-        }
-      },
     {
       label: "Phone Number",
       required: true,
