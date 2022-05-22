@@ -7,6 +7,7 @@ import { PatientSignUpSchema } from '../../../formSchemas/PatientSignUpSchema';
 import { db, auth } from '../../../firebase-config';
 import RequestList from '../../../components/RequestList';
 import {Header} from '../../../components/Header';
+import TabSwitcher from '../../../components/TabSwitcher';
 
 const SignUp = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -37,7 +38,9 @@ const SignUp = () => {
             <RequestList requests={requests} onSubmit={() => {}} />
           }
       </IonContent>
+      <TabSwitcher view="pharmacist"/>
     </IonPage>
+    
   );
 };
 export default SignUp;

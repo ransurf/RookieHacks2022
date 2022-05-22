@@ -31,12 +31,11 @@ const PharmaciesList = () => {
     console.log(pharmacyId);
     console.log(user.uid);
     //set  new pharmacist in collection with id as user.id
-    const pharmacistsCollectionRef = collection(db, 'pharmacists');
+    const pharmacistsCollectionRef: any = collection(db, 'pharmacists');
     setDoc(pharmacistsCollectionRef as unknown as DocumentReference<DocumentData>, user.uid as unknown as PartialWithFieldValue<DocumentData>, {
       id: user.uid,
       pharmacyId: pharmacyId,
     } as SetOptions);
-    console.log('Document written with ID: ', pharmacistsCollectionRef.id);
   };
   React.useEffect(() => {
     getPharmacies();
@@ -44,7 +43,7 @@ const PharmaciesList = () => {
   }, []);
   return (
     <IonList>
-      {pharmacies && pharmacies.map(pharmacy => (
+      {pharmacies && pharmacies.map((pharmacy) => (
           <IonItem
             key={pharmacy.id}
             onClick={() => {
