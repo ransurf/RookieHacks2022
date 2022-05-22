@@ -61,6 +61,9 @@ const AppShell = () => {
             <Link href="/pharmacist/requests">
               <a>RequestsTest</a>
             </Link>
+            <Link href="/pharmacist/create-pharmacy">
+              <a>create pharmacy</a>
+            </Link>
           </IonContent>
         </IonRouterOutlet>
       </IonSplitPane>

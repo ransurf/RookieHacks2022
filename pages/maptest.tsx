@@ -53,7 +53,7 @@ const Maptest = () => {
         console.log(qRes);
         await addDoc(usersCollectionRef, { 
             address: qRes.formatted_address, 
-            id: qRes.place_id});
+            pharmacyID: qRes.place_id});
     };
 
 

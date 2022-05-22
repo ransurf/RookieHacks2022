@@ -14,17 +14,22 @@ import {
 import {
   collection,
   addDoc,
+  query,
+  where,
+  getDoc,
   getDocs,
 } from "firebase/firestore";
 
 import Form from '../../../components/Form';
+import { PharmacyCreateSchema } from '../../../formSchemas/PharmacyCreateSchema';
 import { Header } from '../../../components/Header';
 import { db, auth } from "../../../firebase-config";
 import Router from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { PharmacistSignUpSchema } from '../../../formSchemas/PharmacistSignUpSchema';
 
-const SignUp = () => {
+
+
+const Create = () => {
   const [user, loading, error] = useAuthState(auth);
   const userRef = collection(db, "users");
   const pharmaRef = collection(db, "pharmacies");
@@ -41,7 +46,7 @@ const SignUp = () => {
       const data = await getDocs(pharmaRef);
       setPharmacies(data.docs.map(doc => (
           { ...doc.data(),
-            place_id: doc.data().pharmacyID,
+            place_id: doc.data().id,
             name: doc.data().name,
             address: doc.data().address, }
         )));
@@ -70,7 +75,7 @@ const SignUp = () => {
     <IonPage>
       <Header text="Pharmacist Signup" />
       <IonContent>
-        <Form fields={PharmacistSignUpSchema} onSubmit={onSubmit}/>
+        <Form fields={PharmacyCreateSchema} onSubmit={onSubmit}/>
         <IonItem>
             <IonLabel>Pharmacy</IonLabel>
             <IonSelect value={pharmID} placeholder="Choose your Location" okText="Okay" cancelText="Dismiss" onIonChange={e => setPharmID(e.detail.value)}>
@@ -87,4 +92,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Create;
