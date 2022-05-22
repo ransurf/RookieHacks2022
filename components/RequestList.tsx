@@ -8,7 +8,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 interface Props {
   requests: Array<Object>;
 
-  onSubmit: (data: any) => void;
+  onChange: (data: any) => void;
 }
 
 interface Request {
@@ -19,11 +19,11 @@ interface Request {
 
 
 const PharmaciesList: React.FC<Props> = (props: Props) => {
-  const { requests, onSubmit } = props;
-  
+  const { requests, onChange } = props;
+
 
   return (
-    <IonList>
+    <IonList onChange={onChange}>
       {requests && requests.map((request: Request) => (
         <IonItem key={request.id}>
           <IonLabel>{request.name}</IonLabel>

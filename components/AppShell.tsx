@@ -12,6 +12,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { Header } from './Header';
 import Link from 'next/link';
+import SelectForm from './SelectForm';
 
 const provider = new GoogleAuthProvider();
 const AppShell = () => {
@@ -45,6 +46,22 @@ const AppShell = () => {
         console.log(error);
       });
   };
+
+  const testValues = [
+    {
+      name: 'place 1',
+      value: '123',
+    },
+    {
+      name: 'place 2',
+      value: '456',
+    },
+  ];
+
+  const onChange = (data: any) => {
+    console.log(data);
+  };
+
   return (
     <IonApp>
       <IonSplitPane contentId="main">
@@ -59,6 +76,7 @@ const AppShell = () => {
             <Link href="/pharmacist/requests">
               <a>RequestsTest</a>
             </Link>
+            <SelectForm label="test" options= {testValues} onChange={onChange} />
           </IonContent>
         </IonRouterOutlet>
       </IonSplitPane>

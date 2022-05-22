@@ -43,7 +43,7 @@ const PharmaciesList = () => {
   }, []);
   return (
     <IonList>
-      {pharmacies && pharmacies.map(pharmacy => (
+      {pharmacies && pharmacies.map((pharmacy) => (
           <IonItem
             key={pharmacy.id}
             onClick={() => {
