@@ -18,6 +18,9 @@ function MyApp({ Component, pageProps }) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
+        <script async
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}&callback=initMap&libraries="places,geocoding"`}>
+        </script>
       </Head>
       <Component {...pageProps} />
       <Script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js" />

@@ -36,7 +36,6 @@ const mapContainerStyle = {
 const options = {
     styles: mapStyles,
     disableDefaultUI: true,
-    zoomControl: true,
 };
 
 var center = {
@@ -75,7 +74,7 @@ const Maptest = () => {
     // panning coordinate input
     const panTo = React.useCallback(({ lat, lng }) => {
         mapRef.current.panTo({ lat, lng });
-        mapRef.current.setZoom(13);
+        mapRef.current.setZoom(12);
 
     }, []);
 

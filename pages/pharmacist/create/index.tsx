@@ -43,13 +43,14 @@ import Form from '../../../components/Form';
 import { PharmacyCreateSchema } from '../../../formSchemas/PharmacyCreateSchema';
 import { Header } from '../../../components/Header';
 import { db, auth } from "../../../firebase-config";
-
+import mapStyles from '../../../public/maptest/mapStyles';
 //===========================================================
 const mapContainerStyle = {
   width: '90vw',
   height: '25vh',
 };    
 const options = {
+  styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
 };
@@ -107,7 +108,6 @@ const Create = () => {
                 pharmacyID: qRes.place_id, 
                 address: qRes.formatted_address,
             });
-            Router.push('/pharmacist/requests');
         }
     
     })
