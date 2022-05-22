@@ -48,7 +48,7 @@ const Maptest = () => {
     
 
     //Database stuff===========================================================
-    const usersCollectionRef = collection(db, "test");
+    const usersCollectionRef = collection(db, "pharmacies");
     const addPharm = async () => {
         console.log(qRes);
         await addDoc(usersCollectionRef, { 

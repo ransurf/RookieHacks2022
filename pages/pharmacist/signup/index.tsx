@@ -1,11 +1,15 @@
 //PHARMACY SELECTION
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PharmaciesList from '../../../components/PharmaciesList';
 import {
-  IonContent,
+  IonLabel,
+  IonSelectOption,
+  IonSelect,
+  IonItem,
   IonPage,
+  IonContent,
 } from '@ionic/react';
 import {
   collection,
@@ -23,13 +27,35 @@ import { db, auth } from "../../../firebase-config";
 import Router from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { PharmacistSignUpSchema } from '../../../formSchemas/PharmacistSignUpSchema';
-
+import SelectForm from '../../../components/SelectForm';
 
 const SignUp = () => {
   const [user, loading, error] = useAuthState(auth);
   const userRef = collection(db, "users");
+  const pharmaRef = collection(db, "pharmacies");
 
-  const q = query(userRef, where('UID', '==', user.uid));
+  const [pharmacies, setPharmacies] = useState([]);
+  const [pharmID, setPharmID] = useState('');
+  const onChange = (data: any) => {
+    console.log(data);
+  };
+
+  //read the pharmacies from the database and map them to an array of objects
+  useEffect(() => {
+    const getPharmacies = async () => {
+      const data = await getDocs(pharmaRef);
+      setPharmacies(data.docs.map(doc => (
+          { ...doc.data(),
+            place_id: doc.data().id,
+            name: doc.data().name,
+            address: doc.data().address, }
+        )));
+      console.log(pharmacies);
+    };
+    getPharmacies();
+  }, []);
+
+  //add the user to the database with the selected pharmacyID 
   const onSubmit = async (data) => {
     console.log(data);
     console.log("inserting new user as pharmacist");
@@ -39,7 +65,7 @@ const SignUp = () => {
       email: data.contact_email,
       phoneNumber: data.phoneNumber,
       UID: user.uid,
-      pharmacyID: null, 
+      pharmacyID: pharmID, 
       role: ["pharmacist"]
     });
     Router.push('/pharmacist/requests');
@@ -50,6 +76,17 @@ const SignUp = () => {
       <Header text="Pharmacist Signup" />
       <IonContent>
         <Form fields={PharmacistSignUpSchema} onSubmit={onSubmit}/>
+        <IonItem>
+            <IonLabel>Pharmacy</IonLabel>
+            <IonSelect value={pharmID} placeholder="Choose your Location" okText="Okay" cancelText="Dismiss" onIonChange={e => setPharmID(e.detail.value)}>
+              {pharmacies.map(pharm => (
+                <IonSelectOption value={pharm.id}>
+                  {pharm.name + " @ " + pharm.address}
+                </IonSelectOption>
+              ))}
+            </IonSelect>
+          </IonItem>
+          
       </IonContent>
     </IonPage>
   );
