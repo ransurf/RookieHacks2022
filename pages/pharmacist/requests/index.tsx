@@ -63,7 +63,7 @@ const Requests = () => {
             <RequestList requests={requests ? requests : []} onSubmit={() => {}} />
           }
       </IonContent>
-      <TabSwitcher view="patient" />
+      <TabSwitcher view="pharmacist" />
     </IonPage>
   );
 };

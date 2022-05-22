@@ -35,7 +35,8 @@ const AppShell = () => {
               alert('You are not registered yet. Please sign up.');
               Router.push('/start');
             } else {
-              Router.push('/patient/requests');
+              console.log(docs.docs[0].data().role[0]);
+              docs.docs[0].data().role[0] === 'patient'? Router.push('/patient/requests') : Router.push('/pharmacist/requests');
             }
           })
           .catch(err => {
@@ -59,9 +60,6 @@ const AppShell = () => {
               <IonIcon slot="start" icon={logoGoogle}/>
               Sign Into Google
             </IonButton>
-            <Link href="/pharmacist/requests">
-              <a>RequestsTest</a>
-            </Link>
             <IonButton expand="block" size="large" onClick={() => Router.push('/pharmacist/create')}>
               Register Pharmacy
             </IonButton>

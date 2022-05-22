@@ -8,11 +8,10 @@ import {
   IonButton,
   IonSplitPane,
 } from '@ionic/react';
-import { auth } from '../firebase-config';
+import { auth } from '../../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Router from 'next/router';
-import Menu from '../components/Menu';
-import TabSwitcher from '../components/TabSwitcher';
+import TabSwitcher from '../../components/TabSwitcher';
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
   const logout = () => {
@@ -43,7 +42,7 @@ const Home = () => {
               </p>
             </div>
           )}
-          <TabSwitcher />
+          <TabSwitcher view="patient"/>
         </IonContent>
       {/* </IonSplitPane> */}
     </IonPage>

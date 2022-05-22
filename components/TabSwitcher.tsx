@@ -13,7 +13,7 @@ const TabSwitcher = (props: Props) => {
         <IonButton onClick={() => Router.push(`/${view}/requests`)}>
             Requests
         </IonButton>
-        <IonButton onClick={() => Router.push('/profile')}>
+        <IonButton onClick={() => Router.push(`/${view}/profile`)}>
           Profile
         </IonButton>
     </div>

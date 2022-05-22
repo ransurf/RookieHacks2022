@@ -38,7 +38,7 @@ const SignUp = () => {
             <RequestList requests={requests} onSubmit={() => {}} />
           }
       </IonContent>
-      <TabSwitcher view="pharmacist"/>
+      <TabSwitcher view="patient"/>
     </IonPage>
     
   );
